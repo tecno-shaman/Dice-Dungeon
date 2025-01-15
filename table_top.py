@@ -1,28 +1,14 @@
-# File: board_game_simulator_with_dice_containers.py
-
+from const import *
+from funcs import *
 import pygame
 import random
 
 # Initialize Pygame
 pygame.init()
 
-# Screen dimensions
-SIZE = WIDTH, HEIGHT = 800, 600
-
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (200, 50, 50)
-GREEN = (50, 200, 50)
-BLUE = (50, 50, 200)
-GRAY = (150, 150, 150)
-CARD_COLOR = (230, 230, 250)
-DICE_SIZE = 50
-CONTAINER_SLOT_SIZE = 40
-
 # Initialize screen
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Board Game Simulator with Containers")
+pygame.display.set_caption("Dice_Dungeon")
 
 # Fonts
 font = pygame.font.Font(None, 36)
@@ -54,17 +40,15 @@ class Dice:
         self.rect.x = max(drag_area.left, min(x, drag_area.right - DICE_SIZE))
         self.rect.y = max(drag_area.top, min(y, drag_area.bottom - DICE_SIZE))
 
-
-# Enemy class
-class Enemy:
-    def __init__(self, name, x, y, image_path, container_values):
+class Entity:
+    def __init__(self, name, image, container_values):
         self.name = name
-        self.image = pygame.image.load(image_path).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (100, 100))  # Resize for card
-        self.rect = pygame.Rect(x, y, 150, 200)  # Card dimensions
+        self.image = load_image(image)
+        self.image = pygame.transform.scale(self.image, IMAGE_SIZE)  # Resize for card
+        self.rect = pygame.Rect(0, 0, *CARD_SIZE)  # Card dimensions
         self.container = container_values  # List of required dice values
         self.container_slots = []  # Tracks which slots are filled
-        self.container_rects = self._generate_container_rects(x, y + 150)
+        self.container_rects = self._generate_container_rects(10, CARD_SIZE[1] - DICE_SIZE - 10)
 
     def _generate_container_rects(self, x, y):
         """Generate container slots below the enemy card."""
@@ -85,13 +69,13 @@ class Enemy:
                 return True
         return False
 
-    def draw(self, surface):
+    def draw(self, surface, x):
         # Draw card
         pygame.draw.rect(surface, CARD_COLOR, self.rect)
         pygame.draw.rect(surface, BLACK, self.rect, 2)
-        surface.blit(self.image, (self.rect.x + 25, self.rect.y + 10))
+        surface.blit(self.image, (x + 25, y + 10))
         name_text = font.render(self.name, True, BLACK)
-        surface.blit(name_text, (self.rect.x + 10, self.rect.y + 120))
+        surface.blit(name_text, (x + 10, y + 120))
 
         # Draw container
         for i, rect in enumerate(self.container_rects):
@@ -101,14 +85,17 @@ class Enemy:
             text = small_font.render(str(self.container[i]), True, BLACK)
             text_rect = text.get_rect(center=rect.center)
             surface.blit(text, text_rect)
+# Enemy class
+class Enemy(Entity):
+    pass
 
 
 # Game state
 dice_list = []
 enemies = [
-    Enemy("Goblin", 120, 20, "Assets/Graphics/ghost.png", [3, 4, 6]),
-    Enemy("Orc", 300, 20, "Assets/Graphics/ghost.png", [2, 5, 6]),
-    Enemy("Dragon", 480, 20, "Assets/Graphics/ghost.png", [5, 6, 6]),
+    Enemy("Goblin", "ghost.png", [3, 4, 6]),
+    Enemy("Orc","ghost.png", [2, 5, 6]),
+    Enemy("Dragon", "ghost.png", [5, 6, 6]),
 ]
 
 running = True
@@ -125,15 +112,14 @@ def roll_dice():
 
 # Main game loop
 while running:
-    screen.fill(GRAY)
 
     # Draw background
-    background_image = pygame.image.load("Assets/Graphics/wood-texture-background.jpg").convert()
+    background_image = pygame.image.load("Assets/Graphics/dark_wood_table.jpg").convert()
     background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
     screen.blit(background_image, (0, 0))  # Top-left corner of the screen
 
     # Draw the drag area
-    pygame.draw.rect(screen, BLUE, drag_area, 2)
+    pygame.draw.rect(screen, RED, drag_area, 2)
 
     # Draw the button
     pygame.draw.rect(screen, GREEN if button_rect.collidepoint(pygame.mouse.get_pos()) else RED, button_rect)
@@ -142,8 +128,11 @@ while running:
     screen.blit(button_text, button_text_rect)
 
     # Draw enemies
+    x = 10
+    y = 10
     for enemy in enemies:
-        enemy.draw(screen)
+        enemy.draw(screen, x)
+        x += CARD_SIZE[0]
 
     # Draw dice
     for dice in dice_list:
