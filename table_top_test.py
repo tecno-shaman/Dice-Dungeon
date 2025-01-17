@@ -41,18 +41,20 @@ class Dice:
         self.rect.y = max(drag_area.top, min(y, drag_area.bottom - DICE_SIZE))
 
 class Entity:
-    def __init__(self, name, image, container_values):
+    def __init__(self, name, image, container_values, x, y):
         self.name = name
         self.image = load_image(image)
         self.image = pygame.transform.scale(self.image, IMAGE_SIZE)  # Resize for card
-        self.rect = pygame.Rect(0, 0, *CARD_SIZE)  # Card dimensions
+        self.rect = pygame.Rect(x, y, *CARD_SIZE)  # Card dimensions
         self.container = container_values  # List of required dice values
         self.container_slots = []  # Tracks which slots are filled
-        self.container_rects = self._generate_container_rects(10, CARD_SIZE[1] - DICE_SIZE - 10)
+        self.container_rects = self._generate_container_rects()
 
-    def _generate_container_rects(self, x, y):
+    def _generate_container_rects(self):
         """Generate container slots below the enemy card."""
         rects = []
+        x = self.rect.x + 10
+        y = self.rect.bottom - DICE_SIZE - 10
         for i in range(len(self.container)):
             rect = pygame.Rect(x + i * (CONTAINER_SLOT_SIZE + 10), y, CONTAINER_SLOT_SIZE, CONTAINER_SLOT_SIZE)
             rects.append(rect)
@@ -69,15 +71,19 @@ class Entity:
                 return True
         return False
 
-    def draw(self, surface, x):
-        # Draw card
+    def draw(self, surface):
+        # Draw card background
         pygame.draw.rect(surface, CARD_COLOR, self.rect)
         pygame.draw.rect(surface, BLACK, self.rect, 2)
-        surface.blit(self.image, (x + 25, y + 10))
-        name_text = font.render(self.name, True, BLACK)
-        surface.blit(name_text, (x + 10, y + 120))
 
-        # Draw container
+        # Draw image
+        surface.blit(self.image, (self.rect.x + 25, self.rect.y + 10))
+
+        # Draw name
+        name_text = font.render(self.name, True, BLACK)
+        surface.blit(name_text, (self.rect.x + 10, self.rect.y + 120))
+
+        # Draw container slots
         for i, rect in enumerate(self.container_rects):
             color = GREEN if i in self.container_slots else WHITE
             pygame.draw.rect(surface, color, rect)
@@ -85,6 +91,7 @@ class Entity:
             text = small_font.render(str(self.container[i]), True, BLACK)
             text_rect = text.get_rect(center=rect.center)
             surface.blit(text, text_rect)
+
 # Enemy class
 class Enemy(Entity):
     pass
@@ -96,9 +103,9 @@ class Hero(Entity):
 # Game state
 dice_list = []
 enemies = [
-    Enemy("Goblin", "ghost.png", [3, 4, 6]),
-    # Enemy("Orc","ghost.png", [2, 5, 6]),
-    # Enemy("Dragon", "ghost.png", [5, 6, 6]),
+    Enemy("Goblin", "ghost.png", [3, 4, 6], 10, 10),
+    Enemy("Orc", "ghost.png", [2, 5, 6], 240, 10),
+    Enemy("Dragon", "ghost.png", [5, 6, 6], 470, 10),
 ]
 
 running = True
@@ -131,11 +138,8 @@ while running:
     screen.blit(button_text, button_text_rect)
 
     # Draw enemies
-    x = 10
-    y = 10
     for enemy in enemies:
-        enemy.draw(screen, x)
-        x += CARD_SIZE[0]
+        enemy.draw(screen)
 
     # Draw dice
     for dice in dice_list:
