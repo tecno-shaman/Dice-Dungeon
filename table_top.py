@@ -67,8 +67,11 @@ class Entity:
 
     def draw(self, surface):
         if self.defeated:
-            defeated_text = font.render("DEFEATED", True, RED)
-            surface.blit(defeated_text, self.rect.topleft)
+            # defeated_text = font.render("DEFEATED", True, RED)
+            # surface.blit(defeated_text, self.rect.topleft)
+            background_image = load_image("card_back.png")
+            # background_image = pygame.transform.scale(background_image, IMAGE_SIZE)
+            surface.blit(background_image, (self.rect.x, self.rect.y))
             return
 
         # Draw card background
@@ -198,7 +201,7 @@ while running:
 
     # Draw round number
     round_text = font.render(f"Round: {round_number}", True, WHITE)
-    screen.blit(round_text, (WIDTH // 2 - 50, 10))
+    screen.blit(round_text, (WIDTH - 140, HEIGHT // 12))
 
     # Draw enemies
     for enemy in enemies:

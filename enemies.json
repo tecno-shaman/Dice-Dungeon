@@ -1,0 +1,1 @@
+{"rat": ["Rat", "enemies/rat.png", [5], 3], "snake": ["Snake", "enemies/arbok.png", [3, 4, 6], 5], "wasp": ["Wasp", "enemies/beedrill.png", [2, 5, 6], 8], "thing": ["Thing", "enemies/starmie.png", [5, 6, 6], 12]}
