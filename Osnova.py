@@ -284,11 +284,11 @@ class Chest(AnimatedSprite):  # Сундук
 
 if __name__ == '__main__':
     pygame.init()
-    screen_size = (600, 400)
+    screen_size = (1200, 700)
     screen = pygame.display.set_mode(screen_size)
     pygame.display.set_caption("Dice Dungeon")
 
-    width, height = 100, 100
+    width, height = 500, 500
     tmx_map = load_map('map_now1.tmx')
     inventory = Inventory()
     inventory_ui = InventoryUI(inventory)
@@ -299,7 +299,7 @@ if __name__ == '__main__':
     orks = AnimatedSprite(load_image("orc.png"), 8, 1, *ork_pos)
     orks2 = AnimatedSprite(load_image("orc3.png"), 8, 1, *ork_pos2)
     orks_exists = True
-    hero = AnimatedSprite(load_image("run.png"), 6, 1, 50, 50)
+    hero = AnimatedSprite(load_image("run2.png"), 6, 1, 50, 50)
     all_sprites.add(orks)
     all_sprites.add(orks2)
     orks_go = True
@@ -322,6 +322,8 @@ if __name__ == '__main__':
     three = False
     orks_exists2 = False
     orks_exists3 = False
+    Go = True
+    Go2 = True
 
     while running:
         for event in pygame.event.get():
@@ -345,6 +347,22 @@ if __name__ == '__main__':
             if keys[pygame.K_e]:  # Если нажата клавиша E
                 coins_gained = chest.open_chest()  # Открываем сундук
                 coin_count += coins_gained  # Увеличиваем кол
+        if Go and orks_exists:
+            for ork in [orks, orks2]:
+                if hero.rect.colliderect(ork.rect):
+                    start_fight(screen)
+                    coin_count += 1
+                    Go = False
+        if Go2 and orks_exists2:
+            for ork in [orks3, orks4, orks5, orks6, ratte, ratte2]:
+                if hero.rect.colliderect(ork.rect):
+                    start_fight(screen)
+                    coin_count += 1
+                    Go2 = False
+        if orks_exists3:
+            if hero.rect.colliderect(monstr.rect):
+                    start_fight(screen)
+                    coin_count += 1
         if hero.rect.y >= 500 and hero.rect.x >= 900 and two:  # Переход на вторую локацию
             tmx_map = load_map('map_now2.tmx')
             hero_pos = [100, 350]
@@ -412,8 +430,7 @@ if __name__ == '__main__':
         camera.update(hero)
         tmx_map.tilewidth = 16
         tmx_map.tileheight = 16
-        chest.update(True)  # Обновляем анимацию сундука
-        screen.blit(chest.image, (chest.rect.x + camera.dx, chest.rect.y + camera.dy))
+
 
         # Отображение количества монет
         coin_text = f"Coins: {coin_count}"
@@ -439,10 +456,9 @@ if __name__ == '__main__':
             screen.blit(orks.image, (orks.rect.x + camera.dx, orks.rect.y + camera.dy))
             screen.blit(orks2.image, (orks2.rect.x + camera.dx, orks2.rect.y + camera.dy))
             screen.blit(chest.image, (chest.rect.x + camera.dx, chest.rect.y + camera.dy))
+            chest.update(True)  # Обновляем анимацию сундука
+            screen.blit(chest.image, (chest.rect.x + camera.dx, chest.rect.y + camera.dy))
 
-            for ork in [orks, orks2]:
-                if hero.rect.colliderect(ork.rect):
-                    start_fight(screen)
         if orks_exists2:  # 2 локация
             move_orks6()
             move_orks5()
