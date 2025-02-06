@@ -144,7 +144,7 @@ def roll_dice():
         dice_list.append(Dice(value, x, y))
 
 
-def display_message(text, color):
+def display_message(text, color, screen):
     """Display a large message on the screen."""
     overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
     overlay.fill((0, 0, 0, 180))  # Semi-transparent black overlay
@@ -156,15 +156,15 @@ def display_message(text, color):
     pygame.time.wait(3000)  # Pause for 3 seconds
 
 
-def handle_game_over(player, enemies):
+def handle_game_over(player, enemies, screen):
     global running, game_over_state
     if player.health <= 0:
         game_over_state = "game_over"
-        display_message("Game Over!", RED)
+        display_message("Game Over!", RED, screen)
 
     elif all(enemy.is_defeated() for enemy in enemies):
         game_over_state = "victory"
-        display_message("Congratulations! You Won!", GREEN)
+        display_message("Congratulations! You Won!", GREEN, screen) # Mark enemies as defeated
 
 
 def start_fight(screen, *args):
@@ -175,7 +175,7 @@ def start_fight(screen, *args):
         for enemy in args:
             enemies.append(Enemy(*all_cards[enemy]))
     else:
-        enemies = [Enemy(*all_cards["snake"]), Enemy(*all_cards["wasp"]), Enemy(*all_cards["thing"])]
+        enemies = [Enemy(*all_cards["snake"]), Enemy(*all_cards["ork"]), Enemy(*all_cards["thing"])]
         print("Подан пустой список врагов")
 
     player = Hero(PLAYER_HEALTH)
@@ -208,8 +208,7 @@ def start_fight(screen, *args):
         # Draw round number
         round_text = font.render(f"Round: {round_number}", True, WHITE)
         screen.blit(round_text, (WIDTH - 140, HEIGHT // 12))
-
-        # Draw enemies
+    # Draw enemies
         for enemy in enemies:
             enemy.draw(screen)
 
@@ -221,7 +220,7 @@ def start_fight(screen, *args):
         player.draw(screen)
 
         # Check for game over or victory
-        handle_game_over(player, enemies)
+        handle_game_over(player, enemies, screen)
 
         # Event handling
         for event in pygame.event.get():
