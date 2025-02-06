@@ -2,7 +2,12 @@ import os
 from PIL import Image, ImageSequence
 
 
-def gif_to_spritesheet(input_folder, output_folder, frame_size=(148, 128), num_frames=35):
+def interpolate_frames(frame1, frame2, alpha):
+    """Интерполяция между двумя кадрами."""
+    return Image.blend(frame1, frame2, alpha)
+
+
+def gif_to_spritesheet(input_folder, output_folder, frame_size=(148, 128), num_frames=60):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
@@ -15,8 +20,17 @@ def gif_to_spritesheet(input_folder, output_folder, frame_size=(148, 128), num_f
                 frames = [frame.copy().convert("RGBA").resize(frame_size) for frame in ImageSequence.Iterator(img)]
 
                 if len(frames) > num_frames:
-                    step = len(frames) // num_frames
-                    frames = frames[::step][:num_frames]
+                    # Создаем промежуточные кадры
+                    new_frames = []
+                    step = (len(frames) - 1) / (num_frames - 1)
+                    for i in range(num_frames):
+                        idx = i * step
+                        idx1 = int(idx)
+                        idx2 = min(idx1 + 1, len(frames) - 1)
+                        alpha = idx - idx1
+                        new_frame = interpolate_frames(frames[idx1], frames[idx2], alpha)
+                        new_frames.append(new_frame)
+                    frames = new_frames
                 else:
                     frames = frames[:num_frames] + [frames[-1]] * max(0, num_frames - len(frames))
 
