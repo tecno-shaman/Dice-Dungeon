@@ -1,5 +1,6 @@
 from const import *
 from funcs import *
+from spritesheet import SpriteSheet
 import pygame
 import random
 
@@ -50,8 +51,8 @@ class Entity:
     def __init__(self, name, image, container_values, attack):
         global x, y
         self.name = name
-        self.image = load_image(image)
-        self.image = pygame.transform.scale(self.image, IMAGE_SIZE)  # Resize for card
+        self.image = SpriteSheet("Assets/Graphics/" + image)
+        # self.image = pygame.transform.scale(self.image, IMAGE_SIZE)  # Resize for card
         self.rect = pygame.Rect(x, y, *CARD_SIZE)  # Card dimensions
         x += CARD_SIZE[0] + 5
         y += 0
@@ -99,7 +100,9 @@ class Entity:
         pygame.draw.rect(surface, BLACK, self.rect, 2)
 
         # Draw image
-        surface.blit(self.image, (self.rect.x + 25, self.rect.y + 10))
+        surface.blit(self.image.get_current_frame(),
+                     (self.rect.x + CARD_SIZE[0] // 2 - 100, self.rect.y + CARD_SIZE[1] // 2 - 64))
+        self.image.next_frame()
 
         # Draw name
         name_text = font.render(self.name, True, BLACK)
@@ -281,7 +284,8 @@ def start_fight(screen, *args):
 
         # Update display
         pygame.display.flip()
-        clock.tick(60)
+        dt = clock.tick(30)
+
     # pygame.quit()
 
 
