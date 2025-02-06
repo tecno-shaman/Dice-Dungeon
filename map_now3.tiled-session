@@ -1,0 +1,193 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "C:/Users/Ярослав/Dice-Dungeon/map_now2.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "C:/Users/Ярослав/Dice-Dungeon/map_now2.tmx": {
+            "scale": 0.7028515625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 639.5375979547603,
+                "y": 399.7999221919635
+            }
+        },
+        "C:/Users/Ярослав/Dice-Dungeon/Карта/Castle2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Ярослав/Dice-Dungeon/Карта/Objects.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Ярослав/Dice-Dungeon/Карта/Objects_small_details.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/Ярослав/Dice-Dungeon/Карта/Tileset.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Ярослав/Dice-Dungeon/Карта/magecity.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Ярослав/Spirits/map_now1.tmx": {
+            "scale": 0.9371354166666667,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 479.6531984660702,
+                "y": 320.12449285833384
+            }
+        },
+        "C:/Users/Ярослав/Spirits/Карта/Castle2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Ярослав/Spirits/Карта/Objects.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/Ярослав/Spirits/Карта/Objects_small_details.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/Ярослав/Spirits/Карта/Tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "C:/Users/Ярослав/Spirits/Карта/magecity.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "D:/Карта/2/Building1_dark_shadow.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Карта/2/Building2_light_shadow.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Карта/2/Castle2.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Карта/2/Dark_totem_dark_shadow1.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Карта/2/FieldsTile_01.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Карта/2/Tileset2.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Карта/2/magecity.tsx": {
+            "scaleInDock": 1
+        },
+        "D:/Карта/2/mushroom3_light_shadow2.tsx": {
+            "scaleInDock": 1
+        },
+        "magecity.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "map_now.tmx": {
+            "scale": 0.558125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 688.9137737961927,
+                "y": 799.1041433370661
+            }
+        },
+        "map_now.tmx#Cave_objects_source": {
+            "scaleInDock": 1
+        },
+        "map_now.tmx#DR": {
+            "scaleInDock": 1
+        },
+        "map_now.tmx#Demon_scull_dark_shadow": {
+            "scaleInDock": 1
+        },
+        "map_now.tmx#Knight": {
+            "scaleInDock": 1
+        },
+        "map_now.tmx#PalatkA": {
+            "scaleInDock": 1
+        },
+        "map_now.tmx#magic_circle_dark_shadow": {
+            "scaleInDock": 1
+        },
+        "map_now1.tmx": {
+            "scale": 0.9371354166666667,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 479.6531984660702,
+                "y": 320.12449285833384
+            }
+        },
+        "map_now2.tmx": {
+            "scale": 0.7028515625,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 595.4315567165007,
+                "y": 399.7999221919635
+            }
+        },
+        "map_now3.tmx": {
+            "scale": 1.405703125,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 253.9654310009448,
+                "y": 159.70655254821318
+            }
+        },
+        "Карта/Castle2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Карта/Objects.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Карта/Objects_small_details.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Карта/Tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Карта/magecity.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/Ярослав/Dice-Dungeon/Карта",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 40,
+    "openFiles": [
+        "map_now3.tmx",
+        "C:/Users/Ярослав/Spirits/Карта/Objects.tsx",
+        "C:/Users/Ярослав/Spirits/Карта/magecity.tsx",
+        "C:/Users/Ярослав/Spirits/Карта/Tileset.tsx",
+        "C:/Users/Ярослав/Dice-Dungeon/Карта/Objects_small_details.tsx",
+        "C:/Users/Ярослав/Dice-Dungeon/map_now2.tmx"
+    ],
+    "project": "map_now3.tiled-project",
+    "recentFiles": [
+        "map_now3.tmx",
+        "C:/Users/Ярослав/Spirits/Карта/Objects.tsx",
+        "C:/Users/Ярослав/Spirits/Карта/magecity.tsx",
+        "C:/Users/Ярослав/Spirits/Карта/Tileset.tsx",
+        "C:/Users/Ярослав/Dice-Dungeon/Карта/Objects_small_details.tsx",
+        "C:/Users/Ярослав/Dice-Dungeon/map_now2.tmx",
+        "magecity.tsx",
+        "C:/Users/Ярослав/Spirits/map_now1.tmx",
+        "map_now1.tmx",
+        "map_now.tmx",
+        "map_now2.tmx",
+        "Карта/Tileset.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

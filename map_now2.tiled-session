@@ -1,0 +1,79 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map_now2.tmx",
+    "expandedProjectPaths": [
+        "Карта",
+        "."
+    ],
+    "fileStates": {
+        "Castle2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "map_now2.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 518,
+                "y": 466.6666666666666
+            }
+        },
+        "Карта/Castle2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Карта/Objects.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Карта/Objects_small_details.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Карта/Tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Карта/magecity.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/Ярослав/pythonProject/Зкщусе/Карта",
+    "map.height": 50,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 80,
+    "openFiles": [
+        "map_now2.tmx",
+        "Карта/Castle2.tsx",
+        "Карта/magecity.tsx",
+        "Карта/Objects.tsx",
+        "Карта/Objects_small_details.tsx",
+        "Карта/Tileset.tsx"
+    ],
+    "project": "map_now2.tiled-project",
+    "recentFiles": [
+        "Карта/Tileset.tsx",
+        "Карта/Objects_small_details.tsx",
+        "Карта/Objects.tsx",
+        "Карта/magecity.tsx",
+        "Карта/Castle2.tsx",
+        "map_now2.tmx",
+        "Tileset.tsx",
+        "Castle2.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

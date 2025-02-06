@@ -1,0 +1,32 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "Карта/magecity.tsx",
+    "expandedProjectPaths": [
+        ".",
+        "Карта"
+    ],
+    "fileStates": {
+        "Карта/magecity.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        }
+    },
+    "last.imagePath": "C:/Users/Ярослав/pythonProject/Зкщусе/Карта",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+        "Карта/magecity.tsx"
+    ],
+    "project": "map_now1.tmx.tiled-project",
+    "recentFiles": [
+        "Карта/magecity.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
