@@ -24,3 +24,5 @@ def load_image(name, color_key=None):
 def get_enemies():
     with open("enemies.json", 'r') as file:
         return(json.load(file))
+
+
