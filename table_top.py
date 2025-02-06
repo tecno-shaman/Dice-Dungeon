@@ -198,9 +198,6 @@ def start_fight(screen, *args):
         background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
         screen.blit(background_image, (0, 0))  # Top-left corner of the screen
 
-        # Draw the drag area
-        pygame.draw.rect(screen, RED, upper_area, 2)
-
         # Draw buttons
         if game_over_state is None:
             pygame.draw.rect(screen, GREEN if button_rect.collidepoint(pygame.mouse.get_pos()) else RED, button_rect)
