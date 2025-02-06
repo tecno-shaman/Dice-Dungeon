@@ -9,6 +9,26 @@ from table_top import start_fight
 
 collisions = []
 
+def start_screen(screen):
+    background_image = load_image("fon.png")
+    button_rect = pygame.Rect(1200 // 2 - 75, 700 // 2 - 25, 150, 50)
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1 and button_rect.collidepoint(event.pos):
+                    return
+        screen.blit(background_image, (0, 0))
+        pygame.draw.rect(screen, (255, 255, 255), button_rect)
+        font = pygame.font.Font(None, 36)
+        button_text = font.render("Начать игру", True, (0, 0, 0))
+        text_rect = button_text.get_rect(center=button_rect.center)
+        screen.blit(button_text, text_rect)
+        pygame.display.flip()
 
 def get_collision_rects(tmx_map, layer_index):
     collision_rects = []
@@ -282,7 +302,15 @@ class Chest(AnimatedSprite):  # Сундук
             self.cur_frame = 1  # Меняем на второй кадр анимации
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
+    pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.music.load("cruto_fonk.mp3")
+    pygame.mixer.music.play(-1)
+    screen = pygame.display.set_mode((1200, 700))
+    pygame.display.set_caption("Dice Dungeon")
+
+    start_screen(screen)
     pygame.init()
     screen_size = (1200, 700)
     screen = pygame.display.set_mode(screen_size)
