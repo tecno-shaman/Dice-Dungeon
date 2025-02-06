@@ -16,7 +16,7 @@ small_font = pygame.font.Font(None, 24)
 upper_area = pygame.Rect(100, 450, WIDTH - 200, 150)  # Updated area for dice
 
 # Button dimensions
-button_rect = pygame.Rect(WIDTH // 2 - 75, HEIGHT - 100, 150, 50)
+button_rect = pygame.Rect(WIDTH // 2 - 95, HEIGHT - 100, 200, 50)
 
 # Constants
 ROLL_COUNT = 3  # Number of dice to roll each turn
@@ -102,7 +102,8 @@ class Entity:
         # Draw image
         surface.blit(self.image.get_current_frame(),
                      (self.rect.x + CARD_SIZE[0] // 2 - 100, self.rect.y + CARD_SIZE[1] // 2 - 64))
-        self.image.next_frame()
+        if random.randint(0,1):
+            self.image.next_frame()
 
         # Draw name
         name_text = font.render(self.name, True, BLACK)
@@ -134,7 +135,7 @@ class Hero:
         self.health -= damage
 
     def draw(self, surface):
-        health_text = font.render(f"HP: {self.health}", True, RED)
+        health_text = font.render(f"ХП: {self.health}", True, RED)
         surface.blit(health_text, (10, HEIGHT - 50))
 
 
@@ -147,7 +148,7 @@ def roll_dice():
         dice_list.append(Dice(value, x, y))
 
 
-def display_message(text, color):
+def display_message(screen, text, color):
     """Display a large message on the screen."""
     overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
     overlay.fill((0, 0, 0, 180))  # Semi-transparent black overlay
@@ -156,18 +157,19 @@ def display_message(text, color):
     text_rect = message.get_rect(center=(WIDTH // 2, HEIGHT // 2))
     screen.blit(message, text_rect)
     pygame.display.flip()
-    pygame.time.wait(3000)  # Pause for 3 seconds
+    pygame.time.wait(1000)
 
 
-def handle_game_over(player, enemies):
+def handle_game_over(screen, player, enemies):
     global running, game_over_state
     if player.health <= 0:
         game_over_state = "game_over"
-        display_message("Game Over!", RED)
-
+        display_message(screen, "Game Over!", RED)
+        running = False
     elif all(enemy.is_defeated() for enemy in enemies):
         game_over_state = "victory"
-        display_message("Congratulations! You Won!", GREEN)
+        display_message(screen, "Congratulations! You Won!", GREEN)
+        running = False
 
 
 def start_fight(screen, *args):
@@ -178,7 +180,8 @@ def start_fight(screen, *args):
         for enemy in args:
             enemies.append(Enemy(*all_cards[enemy]))
     else:
-        enemies = [Enemy(*all_cards["snake"]), Enemy(*all_cards["wasp"]), Enemy(*all_cards["thing"])]
+        # enemies = [Enemy(*all_cards["snake"]), Enemy(*all_cards["wasp"]), Enemy(*all_cards["thing"])]
+        enemies = [Enemy(*all_cards["rat"])]
         print("Подан пустой список врагов")
 
     player = Hero(PLAYER_HEALTH)
@@ -189,6 +192,11 @@ def start_fight(screen, *args):
 
     running = True
     clock = pygame.time.Clock()
+
+    pygame.mixer.init()
+    pygame.mixer.music.load("Assets/Sound/anger.mp3")
+    pygame.mixer.music.set_volume(0.09)
+    pygame.mixer.music.play(-1)
 
     # Main game loop
     while running:
@@ -201,12 +209,12 @@ def start_fight(screen, *args):
         # Draw buttons
         if game_over_state is None:
             pygame.draw.rect(screen, GREEN if button_rect.collidepoint(pygame.mouse.get_pos()) else RED, button_rect)
-            button_text = font.render("Roll Dice" if button_state == "roll" else "End Turn", True, WHITE)
+            button_text = font.render("Бросить кости" if button_state == "roll" else "Конец хода", True, WHITE)
             button_text_rect = button_text.get_rect(center=button_rect.center)
             screen.blit(button_text, button_text_rect)
 
         # Draw round number
-        round_text = font.render(f"Round: {round_number}", True, WHITE)
+        round_text = font.render(f"Раунд: {round_number}", True, WHITE)
         screen.blit(round_text, (WIDTH - 140, HEIGHT // 12))
 
         # Draw enemies
@@ -221,7 +229,7 @@ def start_fight(screen, *args):
         player.draw(screen)
 
         # Check for game over or victory
-        handle_game_over(player, enemies)
+        handle_game_over(screen, player, enemies)
 
         # Event handling
         for event in pygame.event.get():
@@ -281,7 +289,7 @@ def start_fight(screen, *args):
 
         # Update display
         pygame.display.flip()
-        dt = clock.tick(30)
+        clock.tick(30)
 
     # pygame.quit()
 

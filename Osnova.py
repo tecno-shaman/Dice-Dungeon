@@ -10,7 +10,7 @@ from table_top import start_fight
 collisions = []
 
 def start_screen(screen):
-    background_image = load_image("fon.png")
+    background_image = load_image("fon(old).png")
     button_rect = pygame.Rect(1200 // 2 - 75, 700 // 2 - 25, 150, 50)
 
     running = True
@@ -305,7 +305,7 @@ class Chest(AnimatedSprite):  # Сундук
 if __name__ == "__main__":
     pygame.init()
     pygame.mixer.init()
-    pygame.mixer.music.load("cruto_fonk.mp3")
+    pygame.mixer.music.load("Assets/Sound/chill.mp3")
     pygame.mixer.music.play(-1)
     screen = pygame.display.set_mode((1200, 700))
     pygame.display.set_caption("Dice Dungeon")

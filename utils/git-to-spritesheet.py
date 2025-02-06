@@ -7,7 +7,7 @@ def interpolate_frames(frame1, frame2, alpha):
     return Image.blend(frame1, frame2, alpha)
 
 
-def gif_to_spritesheet(input_folder, output_folder, frame_size=(148, 128), num_frames=60):
+def gif_to_spritesheet(input_folder, output_folder, frame_size=(148, 128), num_frames=45):
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
