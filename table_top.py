@@ -161,15 +161,18 @@ def display_message(screen, text, color):
 
 
 def handle_game_over(screen, player, enemies):
-    global running, game_over_state
+    global game_over_state
     if player.health <= 0:
         game_over_state = "game_over"
         display_message(screen, "Game Over!", RED)
-        running = False
+        return False
+
     elif all(enemy.is_defeated() for enemy in enemies):
         game_over_state = "victory"
         display_message(screen, "Congratulations! You Won!", GREEN)
-        running = False
+        return False
+    else:
+        return True
 
 
 def start_fight(screen, *args):
@@ -229,7 +232,7 @@ def start_fight(screen, *args):
         player.draw(screen)
 
         # Check for game over or victory
-        handle_game_over(screen, player, enemies)
+        running = handle_game_over(screen, player, enemies)
 
         # Event handling
         for event in pygame.event.get():
