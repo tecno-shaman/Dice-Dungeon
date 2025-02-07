@@ -95,7 +95,7 @@ class Entity:
         # Draw image
         surface.blit(self.image.get_current_frame(),
                      (self.rect.x + CARD_SIZE[0] // 2 - 100, self.rect.y + CARD_SIZE[1] // 2 - 64))
-        if random.randint(0,1):
+        if random.randint(0, 1):
             self.image.next_frame()
 
         # Draw name
@@ -182,13 +182,16 @@ def start_fight(screen, *args):
 
     all_cards = get_enemies()
     enemies = []
+
     if args:
         for enemy in args:
             enemies.append(Enemy(*all_cards[enemy]))
     else:
-        enemies = [Enemy(*all_cards["snake"]), Enemy(*all_cards["wasp"]), Enemy(*all_cards["dog"]),  Enemy(*all_cards["bat"])]
-        # enemies = [Enemy(*all_cards["rat"])]
-        print("Подан пустой список врагов")
+        cnt = random.randint(1, 4)
+        enemy_names = list(all_cards.keys())  # Получаем список возможных врагов
+        for _ in range(cnt):
+            random_enemy = random.choice(enemy_names)  # Выбираем случайного врага
+            enemies.append(Enemy(*all_cards[random_enemy]))  # Добавляем в список
 
     player = Hero(PLAYER_HEALTH)
     player_turn = True
