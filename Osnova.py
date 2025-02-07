@@ -94,94 +94,159 @@ def move_hero(hero, keys, hero_pos, hero_speed):  # Движение гг
     hero.update(moving)
 
 
-def move_orks():  # Вражеский НПС
+def move_orks(enemies):  # Вражеский НПС
     global orks
     global orks_go
+    t = False
     if orks.rect.x < 600 and orks_go:
         orks.rect.x += 1
     elif orks.rect.x >= 400:
         if orks_go:
+            if orks in enemies:
+                enemies.remove(orks)
+                t = True
             orks = AnimatedSprite(load_image("orc2.png"), 8, 1, orks.rect.x, orks.rect.y)
+            if t:
+                enemies.append(orks)
             orks_go = False
         orks.rect.x -= 1
     else:
         orks_go = True
+        if orks in enemies:
+            enemies.remove(orks)
+            t = True
         orks = AnimatedSprite(load_image("orc.png"), 8, 1, orks.rect.x, orks.rect.y)
-
+        if t:
+            enemies.append(orks)
 
 def move_orks2():  # Вражеский НПС
     global orks2
-    global orks_go2  # Объявляем orks как глобальную переменную
+    global orks_go2
+    t = False
+    # Объявляем orks как глобальную переменную
     if orks2.rect.y > 400 and orks_go2:
         orks2.rect.y -= 1  # Двигаем орка вправо
     elif orks2.rect.y < 500:
         if orks_go2:
+            if orks2 in enemies:
+                enemies.remove(orks2)
+                t = True
             orks2 = AnimatedSprite(load_image("orc4.png"), 8, 1, orks2.rect.x, orks2.rect.y)
+            if t:
+                enemies.append(orks2)
             orks_go2 = False
         orks2.rect.y += 1  # Двигаем орка влево
     else:
         orks_go2 = True
+        if orks2 in enemies:
+            enemies.remove(orks2)
+            t = True
         orks2 = AnimatedSprite(load_image("orc3.png"), 8, 1, orks2.rect.x, orks2.rect.y)
-
+        if t:
+            enemies.append(orks2)
 
 def move_orks5():  # Вражеский НПС
     global orks5
     global orks_go5
+    t = False
     if orks5.rect.x < 900 and orks_go5:
         orks5.rect.x += 1
     elif orks5.rect.x >= 750:
         if orks_go5:
+            if orks5 in enemies:
+                enemies.remove(orks5)
+                t = True
             orks5 = AnimatedSprite(load_image("orc2.png"), 8, 1, orks5.rect.x, orks5.rect.y)
+            if t:
+                enemies.append(orks5)
             orks_go5 = False
         orks5.rect.x -= 1
     else:
+        if orks5 in enemies:
+            enemies.remove(orks5)
+            t = True
         orks_go5 = True
         orks5 = AnimatedSprite(load_image("orc.png"), 8, 1, orks5.rect.x, orks5.rect.y)
+        if t:
+            enemies.append(orks5)
 
 
 def move_orks6():  # Вражеский НПС
     global orks6
     global orks_go6
+    t = False
     if orks6.rect.x < 1200 and orks_go6:
         orks6.rect.x += 1
     elif orks6.rect.x >= 800:
         if orks_go6:
+            if orks6 in enemies:
+                enemies.remove(orks6)
+                t = True
             orks6 = AnimatedSprite(load_image("orc2.png"), 8, 1, orks6.rect.x, orks6.rect.y)
+            if t:
+                enemies.append(orks6)
             orks_go6 = False
         orks6.rect.x -= 1
     else:
+        if orks6 in enemies:
+            enemies.remove(orks6)
+            t = True
         orks_go6 = True
         orks6 = AnimatedSprite(load_image("orc.png"), 8, 1, orks6.rect.x, orks6.rect.y)
+        if t:
+            enemies.append(orks6)
 
 
 def move_ratte():  # Вражеский НПС
     global ratte
     global ratte_go
+    t = False
     if ratte.rect.x < 600 and ratte_go:
         ratte.rect.x += 1
     elif ratte.rect.x >= 400:
         if ratte_go:
+            if ratte in enemies:
+                enemies.remove(ratte)
+                t = True
             ratte = AnimatedSprite(load_image("ratte.png"), 6, 1, ratte.rect.x, ratte.rect.y)
+            if t:
+                enemies.append(ratte)
             ratte_go = False
         ratte.rect.x -= 1
     else:
+        if ratte in enemies:
+            enemies.remove(ratte)
+            t = True
         ratte_go = True
         ratte = AnimatedSprite(load_image("ratte2.png"), 6, 1, ratte.rect.x, ratte.rect.y)
+        if t:
+            enemies.append(ratte)
 
 
 def move_ratte2():  # Вражеский НПС
     global ratte2
-    global ratte_go2  # Объявляем orks как глобальную переменную
+    global ratte_go2
+    t = False
     if ratte2.rect.y > 415 and ratte_go2:
-        ratte2.rect.y -= 1  # Двигаем орка вправо
+        ratte2.rect.y -= 1
     elif ratte2.rect.y < 600:
         if ratte_go2:
+            if ratte2 in enemies:
+                enemies.remove(ratte2)
+                t = True
             ratte2 = AnimatedSprite(load_image("ratte3.png"), 6, 1, ratte2.rect.x, ratte2.rect.y)
+            if t:
+                enemies.append(ratte2)
             ratte_go2 = False
-        ratte2.rect.y += 1  # Двигаем орка влево
+        ratte2.rect.y += 1
     else:
+        if ratte2 in enemies:
+            enemies.remove(ratte2)
+            t = True
         ratte_go2 = True
         ratte2 = AnimatedSprite(load_image("ratte4.png"), 6, 1, ratte2.rect.x, ratte2.rect.y)
+        if t:
+            enemies.append(ratte2)
 
 
 def move_monstr():  # Вражеский НПС
@@ -320,6 +385,9 @@ class Chest(AnimatedSprite):  # Сундук
         if self.is_open:
             self.cur_frame = 1  # Меняем на второй кадр анимации
 
+def is_within_distance(hero, enemy, distance):
+    return abs(hero.rect.x - enemy.rect.x) < distance and abs(hero.rect.y - enemy.rect.y) < distance
+
 
 if __name__ == "__main__":
     pygame.init()
@@ -352,18 +420,18 @@ if __name__ == "__main__":
     ork_pos2 = [400, 400]
     orks = AnimatedSprite(load_image("orc.png"), 8, 1, *ork_pos)
     orks2 = AnimatedSprite(load_image("orc3.png"), 8, 1, *ork_pos2)
+    enemies = [orks, orks2]
     orks_exists = True
     hero = AnimatedSprite(load_image("run2.png"), 6, 1, 50, 50)
     all_sprites.add(orks)
     all_sprites.add(orks2)
     orks_go = True
     orks_go2 = True
-    coin_image = load_image("mani.png")  # Замените на имя Вашего файла с изображением монеты
+    coin_image = load_image("mani.png")
     coin_count = 0
-    chest = Chest(200, 350)  # Замените координаты на нужные
+    chest = Chest(200, 350)
     all_sprites.add(chest)
     font = pygame.font.Font(None, 36)
-    # Создаем героя
     hero_pos = [100, 350]
     hero.rect.topleft = hero_pos
     hero_speed = 5
@@ -376,8 +444,6 @@ if __name__ == "__main__":
     three = False
     orks_exists2 = False
     orks_exists3 = False
-    Go = True
-    Go2 = True
 
     while running:
         for event in pygame.event.get():
@@ -386,38 +452,24 @@ if __name__ == "__main__":
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_TAB:
                     inventory_open = not inventory_open
-                if hero.rect.colliderect(chest.rect) and keys[
-                    pygame.K_e]:  # Если герой рядом с сундуком и нажата клавиша E
-                    coins_gained = chest.open_chest()  # Открываем сундук и получаем монеты
-                    coin_count += coins_gained  # Увеличиваем количество монет
+
 
         keys = pygame.key.get_pressed()
         move_hero(hero, keys, hero_pos, hero_speed)
         if hero.rect.colliderect(chest.rect):
-            # Если герой рядом с сундуком, отображаем текст
             text_surface = font.render("Нажмите E, чтобы открыть сундук", True, (255, 255, 255))
-            screen.blit(text_surface, (chest.rect.x, chest.rect.y - 30))  # Отображаем текст над сундуком
+            screen.blit(text_surface, (chest.rect.x, chest.rect.y - 30))
 
-            if keys[pygame.K_e]:  # Если нажата клавиша E
-                coins_gained = chest.open_chest()  # Открываем сундук
-                coin_count += coins_gained  # Увеличиваем кол
-        if Go and orks_exists:
-            for ork in [orks, orks2]:
-                if hero.rect.colliderect(ork.rect):
-                    start_fight(screen)
-                    coin_count += 1
-                    Go = False
-        if Go2 and orks_exists2:
-            for ork in [orks3, orks4, orks5, orks6, ratte, ratte2]:
-                if hero.rect.colliderect(ork.rect):
-                    start_fight(screen)
-                    coin_count += 1
-                    Go2 = False
-        if orks_exists3:
-            if hero.rect.colliderect(monstr.rect):
-                    start_fight(screen)
-                    coin_count += 1
-        if hero.rect.y >= 500 and hero.rect.x >= 900 and two:  # Переход на вторую локацию
+            if keys[pygame.K_e]:
+                coins_gained = chest.open_chest()  #
+                coin_count += coins_gained
+        for ork in enemies[:]:
+            if hero.rect.colliderect(ork.rect):
+                start_fight(screen)
+                coin_count += 1
+                ork.kill()
+                enemies.remove(ork)
+        if hero.rect.y >= 500 and hero.rect.x >= 900 and two:
             tmx_map = load_map('map_now2.tmx')
             hero_pos = [100, 350]
             collisions = []
@@ -459,6 +511,7 @@ if __name__ == "__main__":
             all_sprites.add(ratte2)
             all_sprites.add(madgic)
             orks_exists2 = True
+            enemies = [orks3, orks4, ratte, ratte2, orks5, orks6, madgic]
 
         elif three and hero.rect.x >= 1100:  # Переход на 3 локацию
             tmx_map = load_map('map_now3.tmx')
@@ -478,6 +531,7 @@ if __name__ == "__main__":
             all_sprites.add(monstr)
             orks_exists3 = True
             orks_exists2 = False
+            enemies = [monstr]
 
         handle_collision(hero, hero_pos, keys, hero_speed, collision_rects)
         screen.fill((0, 0, 0))
@@ -486,12 +540,34 @@ if __name__ == "__main__":
         tmx_map.tileheight = 16
 
 
-        # Отображение количества монет
         coin_text = f"Coins: {coin_count}"
         font = pygame.font.Font(None, 36)
         text_surface = font.render(coin_text, True, (255, 255, 255))
         screen.blit(text_surface, (screen_size[0] - text_surface.get_width() - 10, 10))
-        # Отрисовка карты
+        # draw_area_size = 20
+        # tile_width = tmx_map.tilewidth
+        # tile_height = tmx_map.tileheight
+        #
+        # player_tile_x = hero.rect.x // tile_width
+        # player_tile_y = hero.rect.y // tile_height
+        #
+        # start_x = max(0, player_tile_x - draw_area_size // 2)
+        # start_y = max(0, player_tile_y - draw_area_size // 2)
+        # end_x = min(tmx_map.width, player_tile_x + draw_area_size // 2)
+        # end_y = min(tmx_map.height, player_tile_y + draw_area_size // 2)
+        #
+        # screen.fill((128, 128, 128))
+
+        # for layer in tmx_map.visible_layers:
+        #     if isinstance(layer, pytmx.TiledTileLayer):
+        #         for x in range(start_x, end_x):
+        #             for y in range(start_y, end_y):
+        #                 gid = layer.data[y][x]
+        #                 if gid:
+        #                     tile = tmx_map.get_tile_image_by_gid(gid)
+        #                     if tile:
+        #                         # Применяем смещение камеры к координатам
+        #                         screen.blit(tile, (x * tile_width + camera.dx, y * tile_height + camera.dy))
         for layer in tmx_map.visible_layers:
             if isinstance(layer, pytmx.TiledTileLayer):
                 for x, y, gid in layer:
@@ -503,15 +579,22 @@ if __name__ == "__main__":
         camera.apply(hero)  # Применяем смещение камеры к герою
         screen.blit(hero.image, hero.rect.topleft)
         if orks_exists:  # 1 локация
-            move_orks()
+            move_orks(enemies)
             move_orks2()
-            orks.update(True)
-            orks2.update(True)
-            screen.blit(orks.image, (orks.rect.x + camera.dx, orks.rect.y + camera.dy))
-            screen.blit(orks2.image, (orks2.rect.x + camera.dx, orks2.rect.y + camera.dy))
+            for ork in enemies:
+                ork.update(True)
+                screen.blit(ork.image, (ork.rect.x + camera.dx, ork.rect.y + camera.dy))
+            # for ork in enemies:
+            #     if is_within_distance(hero, ork, draw_area_size):
+            #         orks.update(True)  # Обновляем врага только если он в пределах расстояния
+            #         screen.blit(orks.image, (orks.rect.x + camera.dx, orks.rect.y + camera.dy))
+            #     else:
+            #         ork.update(False)
+
             screen.blit(chest.image, (chest.rect.x + camera.dx, chest.rect.y + camera.dy))
             chest.update(True)  # Обновляем анимацию сундука
             screen.blit(chest.image, (chest.rect.x + camera.dx, chest.rect.y + camera.dy))
+
 
         if orks_exists2:  # 2 локация
             move_orks6()
@@ -525,13 +608,9 @@ if __name__ == "__main__":
             orks4.update(True)
             orks5.update(True)
             orks6.update(True)
-            screen.blit(ratte.image, (ratte.rect.x + camera.dx, ratte.rect.y + camera.dy))
-            screen.blit(ratte2.image, (ratte2.rect.x + camera.dx, ratte2.rect.y + camera.dy))
-            screen.blit(madgic.image, (madgic.rect.x + camera.dx, madgic.rect.y + camera.dy))
-            screen.blit(orks3.image, (orks3.rect.x + camera.dx, orks3.rect.y + camera.dy))
-            screen.blit(orks4.image, (orks4.rect.x + camera.dx, orks4.rect.y + camera.dy))
-            screen.blit(orks5.image, (orks5.rect.x + camera.dx, orks5.rect.y + camera.dy))
-            screen.blit(orks6.image, (orks6.rect.x + camera.dx, orks6.rect.y + camera.dy))
+            for ork in enemies:
+                ork.update(True)
+                screen.blit(ork.image, (ork.rect.x + camera.dx, ork.rect.y + camera.dy))
         if orks_exists3:  # 3 локация
             move_monstr()
             monstr.update(True)
