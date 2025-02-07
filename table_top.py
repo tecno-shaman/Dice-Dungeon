@@ -186,8 +186,8 @@ def start_fight(screen, *args):
         for enemy in args:
             enemies.append(Enemy(*all_cards[enemy]))
     else:
-        # enemies = [Enemy(*all_cards["snake"]), Enemy(*all_cards["wasp"]), Enemy(*all_cards["thing"])]
-        enemies = [Enemy(*all_cards["rat"])]
+        enemies = [Enemy(*all_cards["snake"]), Enemy(*all_cards["wasp"]), Enemy(*all_cards["dog"]),  Enemy(*all_cards["bat"])]
+        # enemies = [Enemy(*all_cards["rat"])]
         print("Подан пустой список врагов")
 
     player = Hero(PLAYER_HEALTH)
