@@ -10,8 +10,12 @@ from table_top import start_fight
 collisions = []
 
 def start_screen(screen):
-    background_image = load_image("fon(old).png")
-    button_rect = pygame.Rect(1200 // 2 - 75, 700 // 2 - 25, 150, 50)
+    background_image = load_image("red_dices.jpg")  # Assuming you have this function
+    background_image = pygame.transform.scale(background_image, (1200, 700))
+
+    # Button Rects
+    start_button_rect = pygame.Rect(1200 // 2 - 75, 700 // 2 - 50, 150, 50)  # Adjusted y for spacing
+    exit_button_rect = pygame.Rect(1200 // 2 - 75, 700 // 2 + 50, 150, 50)  # Below start button
 
     running = True
     while running:
@@ -20,15 +24,30 @@ def start_screen(screen):
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if event.button == 1 and button_rect.collidepoint(event.pos):
-                    return
+                if event.button == 1:  # Left mouse button
+                    if start_button_rect.collidepoint(event.pos):
+                        return "start"  # Return a value to indicate "start"
+                    elif exit_button_rect.collidepoint(event.pos):
+                        return "exit"   # Return a value to indicate "exit"
+
         screen.blit(background_image, (0, 0))
-        pygame.draw.rect(screen, (255, 255, 255), button_rect)
+
+        # Draw Start Button
+        pygame.draw.rect(screen, (255, 255, 255), start_button_rect)
         font = pygame.font.Font(None, 36)
-        button_text = font.render("Начать игру", True, (0, 0, 0))
-        text_rect = button_text.get_rect(center=button_rect.center)
-        screen.blit(button_text, text_rect)
+        start_button_text = font.render("Начать игру", True, (0, 0, 0))
+        start_text_rect = start_button_text.get_rect(center=start_button_rect.center)
+        screen.blit(start_button_text, start_text_rect)
+
+        # Draw Exit Button
+        pygame.draw.rect(screen, (255, 255, 255), exit_button_rect)
+        exit_button_text = font.render("Выход", True, (0, 0, 0))
+        exit_text_rect = exit_button_text.get_rect(center=exit_button_rect.center)
+        screen.blit(exit_button_text, exit_text_rect)
+
+
         pygame.display.flip()
+
 
 def get_collision_rects(tmx_map, layer_index):
     collision_rects = []
@@ -310,8 +329,15 @@ if __name__ == "__main__":
     screen = pygame.display.set_mode((1200, 700))
     pygame.display.set_caption("Dice Dungeon")
 
-    start_screen(screen)
+    if start_screen(screen) == "exit":
+        sys.exit()
+
     pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.music.load("Assets/Sound/mid-fight.mp3")
+    pygame.mixer.music.play(-1)
+    pygame.mixer.music.set_volume(0.07)
+
     screen_size = (1200, 700)
     screen = pygame.display.set_mode(screen_size)
     pygame.display.set_caption("Dice Dungeon")

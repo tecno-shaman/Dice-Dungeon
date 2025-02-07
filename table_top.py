@@ -6,9 +6,6 @@ import random
 
 pygame.init()
 
-# Variables
-x = X0
-y = Y0
 # Fonts
 font = pygame.font.Font(None, 36)
 small_font = pygame.font.Font(None, 24)
@@ -17,10 +14,6 @@ upper_area = pygame.Rect(100, 450, WIDTH - 200, 150)  # Updated area for dice
 
 # Button dimensions
 button_rect = pygame.Rect(WIDTH // 2 - 95, HEIGHT - 100, 200, 50)
-
-# Constants
-ROLL_COUNT = 3  # Number of dice to roll each turn
-PLAYER_HEALTH = 100
 
 # Game state
 dice_list = []
@@ -157,15 +150,20 @@ def display_message(screen, text, color):
     text_rect = message.get_rect(center=(WIDTH // 2, HEIGHT // 2))
     screen.blit(message, text_rect)
     pygame.display.flip()
-    pygame.time.wait(1000)
+    pygame.time.wait(2900)
 
 
 def handle_game_over(screen, player, enemies):
     if player.health <= 0:
+        pygame.mixer.music.load("Assets/Sound/lose.mp3")
+        pygame.mixer.music.play()
         display_message(screen, "Игра окончена!", RED)
         return False, "game_over"
 
     elif all(enemy.is_defeated() for enemy in enemies):
+        pygame.mixer.music.load("Assets/Sound/victory.mp3")
+        pygame.mixer.music.play()
+
         display_message(screen, "Ура, Победа!", GREEN)
         return False, "victory"
     else:
@@ -173,7 +171,15 @@ def handle_game_over(screen, player, enemies):
 
 
 def start_fight(screen, *args):
-    global active_dice
+    global active_dice, x, y, ROLL_COUNT
+
+    # Variables
+    x = X0
+    y = Y0
+    # Constants
+    ROLL_COUNT = 3  # Number of dice to roll each turn
+    PLAYER_HEALTH = 100
+
     all_cards = get_enemies()
     enemies = []
     if args:
@@ -291,6 +297,8 @@ def start_fight(screen, *args):
         pygame.display.flip()
         clock.tick(30)
 
+    pygame.mixer.music.load("Assets/Sound/mid-fight.mp3")
+    pygame.mixer.music.play(-1)
     if game_over_state == "game_over":
         return False
     elif game_over_state == "victory":
