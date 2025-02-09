@@ -155,14 +155,10 @@ def display_message(screen, text, color):
 
 def handle_game_over(screen, player, enemies):
     if player.health <= 0:
-        pygame.mixer.music.load("Assets/Sound/lose.mp3")
-        pygame.mixer.music.play()
         display_message(screen, "Игра окончена!", RED)
         return False, "game_over"
 
     elif all(enemy.is_defeated() for enemy in enemies):
-        pygame.mixer.music.load("Assets/Sound/victory.mp3")
-        pygame.mixer.music.play()
 
         display_message(screen, "Ура, Победа!", GREEN)
         return False, "victory"
@@ -201,11 +197,6 @@ def start_fight(screen, *args):
 
     running = True
     clock = pygame.time.Clock()
-
-    pygame.mixer.init()
-    pygame.mixer.music.load("Assets/Sound/anger.mp3")
-    pygame.mixer.music.set_volume(0.09)
-    pygame.mixer.music.play(-1)
 
     # Main game loop
     while running:
@@ -300,8 +291,6 @@ def start_fight(screen, *args):
         pygame.display.flip()
         clock.tick(30)
 
-    pygame.mixer.music.load("Assets/Sound/mid-fight.mp3")
-    pygame.mixer.music.play(-1)
     if game_over_state == "game_over":
         return False
     elif game_over_state == "victory":

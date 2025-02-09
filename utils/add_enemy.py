@@ -7,7 +7,6 @@ enemies = {
     "snake": ("Змея", LOCATION + "snake" + EXTENSION, [3, 4, 6], 5),
     "wasp": ("Оса", LOCATION + "wasp" + EXTENSION, [2, 5, 6], 7),
     "thing": ("Нечто", LOCATION + "thing" + EXTENSION, [5, 6, 6], 10),
-    "ork": ("Орк", LOCATION + "ork.png", [3, 4, 5], 6),
     "dog": ("Гончая", LOCATION + "dog" + EXTENSION, [1, 2, 3], 4),
     "bat": ("Летучая мышь", LOCATION + "bat" + EXTENSION, [2, 2], 2),
     "golem": ("Голем", LOCATION + "golem" + EXTENSION, [4, 5], 4),
